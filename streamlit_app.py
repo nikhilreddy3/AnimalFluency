@@ -45,6 +45,9 @@ except FileNotFoundError:
     st.error("Animal list file not found.")
     animal_names = []
 
+# Apply custom CSS
+st.markdown('<style>{}</style>'.format(open('styles.css').read()), unsafe_allow_html=True)
+
 # Streamlit app
 st.title("Audio Transcription App")
 st.write("Upload a WAV file to transcribe")
@@ -60,8 +63,12 @@ if uploaded_file is not None:
         transcription = transcribe_audio(file_path)
         corrected_text, matched_animals = spell_and_phonetic_correction(transcription, animal_names, spell)
         
-        st.text_area("Transcription", corrected_text)
-        st.text_area("Matched Animals", ', '.join(matched_animals))
+        st.subheader("Transcription")
+        st.text_area("", corrected_text, height=100, key="transcription", className="transcription-area")
+        
+        st.subheader("Matched Animals")
+        st.text_area("", ', '.join(matched_animals), height=100, key="matched_animals", className="transcription-area")
+        
         st.write(f"Number of Matched Animals: {len(matched_animals)}")
         
         transcriptions_df = pd.DataFrame([{'Audio File': os.path.basename(file_path), 
@@ -70,16 +77,9 @@ if uploaded_file is not None:
                                            'Matched Animals': ', '.join(matched_animals), 
                                            'Number of Matched Animals': len(matched_animals)}])
         transcriptions_df.to_csv("transcriptions.csv", index=False)
-        st.success("Transcription completed and saved to CSV.")
+        st.success("Transcription completed and saved to CSV.", icon="✔️")
         
         os.remove(file_path)  # Clean up the temporary file
     except Exception as e:
-        st.error(f"Failed to process the file: {str(e)}")
+        st.error(f"Failed to process the file: {str(e)}", icon="❌")
 
-### Sharing the App with Others
-
-# 1. **Run the Streamlit App Locally**:
-#    Save the code above to a Python file, say `app.py`. You can run the Streamlit app locally using the following command:
-
-#    ```bash
-#    streamlit run app.py
