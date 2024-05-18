@@ -64,12 +64,12 @@ if uploaded_file is not None:
         corrected_text, matched_animals = spell_and_phonetic_correction(transcription, animal_names, spell)
         
         st.subheader("Transcription")
-        st.text_area("", corrected_text, height=100, key="transcription", className="transcription-area")
+        st.markdown(f'<div class="transcription-area">{corrected_text}</div>', unsafe_allow_html=True)
         
-        st.subheader("Matched Animals")
-        st.text_area("", ', '.join(matched_animals), height=100, key="matched_animals", className="transcription-area")
+        st.subheader("Animals present in Recording")
+        st.markdown(f'<div class="transcription-area">{", ".join(matched_animals)}</div>', unsafe_allow_html=True)
         
-        st.write(f"Number of Matched Animals: {len(matched_animals)}")
+        st.write(f"Number of Animals present in Recording: {len(matched_animals)}")
         
         transcriptions_df = pd.DataFrame([{'Audio File': os.path.basename(file_path), 
                                            'Transcription': transcription, 
