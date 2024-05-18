@@ -28,12 +28,6 @@ h1 {
     padding: 10px;
 }
 
-.stTextArea textarea {
-    border-radius: 4px;
-    padding: 10px;
-    border: 1px solid #ccc;
-}
-
 .success-msg {
     color: green;
     font-weight: bold;
@@ -48,4 +42,6 @@ h1 {
     background-color: #fff;
     padding: 10px;
     border-radius: 4px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
