@@ -46,7 +46,7 @@ except FileNotFoundError:
     animal_names = []
 
 # Apply custom CSS
-st.markdown('<style>{}</style>'.format(open('styles.css').read()), unsafe_allow_html=True)
+st.markdown('<style>{}</style>'.format(open('style.css').read()), unsafe_allow_html=True)
 
 # Streamlit app
 st.title("Audio Transcription App")
