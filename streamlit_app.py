@@ -49,7 +49,7 @@ except FileNotFoundError:
 st.markdown('<style>{}</style>'.format(open('style.css').read()), unsafe_allow_html=True)
 
 # Streamlit app
-st.title("Audio Transcription App")
+st.title("Animal Fluency Scoring App")
 st.write("Upload a WAV file to transcribe")
 
 uploaded_file = st.file_uploader("Choose a WAV file", type=["wav"])
@@ -78,6 +78,7 @@ if uploaded_file is not None:
                                            'Matched Animals': ', '.join(matched_animals), 
                                            'Number of Matched Animals': len(matched_animals)}])
         transcriptions_df.to_csv("transcriptions.csv", index=False)
+        st.text("")
         st.success("Transcription completed and saved to CSV.", icon="✔️")
         
         os.remove(file_path)  # Clean up the temporary file
