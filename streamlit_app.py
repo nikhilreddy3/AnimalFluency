@@ -68,8 +68,9 @@ if uploaded_file is not None:
         
         st.subheader("Animals present in Recording")
         st.markdown(f'<div class="transcription-area">{", ".join(matched_animals)}</div>', unsafe_allow_html=True)
-        
-        st.write(f"Number of Animals present in Recording: {len(matched_animals)}")
+
+        st.subheader("Number of Animals present in Recording")
+        st.markdown(f'<div class="transcription-area">{len(matched_animals)}</div>', unsafe_allow_html=True)
         
         transcriptions_df = pd.DataFrame([{'Audio File': os.path.basename(file_path), 
                                            'Transcription': transcription, 
